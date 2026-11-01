@@ -22,6 +22,11 @@ const app = express();
 // Enable only for a local web-server proxy; never trust arbitrary client IP headers.
 if (process.env.TRUST_PROXY === 'loopback') app.set('trust proxy', 'loopback');
 app.disable("x-powered-by");
+// Apply to pages, API responses, attachments and errors before any routes.
+app.use((_req, res, next) => {
+  res.setHeader("X-Robots-Tag", "noindex, nofollow, noarchive");
+  next();
+});
 app.use(
   helmet({
     contentSecurityPolicy:

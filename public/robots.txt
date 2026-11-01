@@ -1,0 +1,4 @@
+# Crawlers must be allowed to read the site-wide noindex response header.
+# robots.txt Disallow rules do not reliably prevent URL indexing.
+User-agent: *
+Disallow:
